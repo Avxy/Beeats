@@ -41,7 +41,7 @@ function setup() {
 } 
 
 function draw() { 
-  background(144, 108, 108);
+  background(144, 108, 0);
   for (var i = 0; i < numHexagons; i++) {
     for (var j = 0; j < numHexagons; j++) {
       for (var k = 0; k < 6; k++) {
