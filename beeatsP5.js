@@ -29,6 +29,12 @@ let agents = [];
 // Helper Functions
 //======================================
 
+
+let input;
+let h1;
+
+
+
 function drawHexagon(pixelPos) {
   // draws hexagon with the center pixelPos
   push();
@@ -73,7 +79,12 @@ function mouseOnScreen() {
 
 function setup() {
   
+  h1 = createElement('h1', 'Favorite Cat is...?');
   
+ 
+  
+  input = createInput('A Health IoT platform to enable medical team to track COVID-19 patients without being in direct contact with them. This could improve safety for medical staff. Furthermore, AI techniches may be used on IoT data collected to implement models that could be used, for example, on COVID19 risk assessment and decision making in high pressure environments (reference COVID19 hospitals).');
+  input.size(200, 20);
  
   
   
@@ -121,6 +132,13 @@ function draw() {
    let s = 'Hi guys. I was thinking about a health IoT platform to enable medical team to track COVID-19 patients without being in direct contact with them. This could improve safety for medical staff. Furthermore, AI techniches may be used on IoT data collected to implement models that could be used, for example, on COVID19 risk assessment and decision making in high pressure environments (reference COVID19 hospitals).';
 fill(50);
 text(s, 10, 10, 70, 80); // Text wraps within text box
+  
+  
+    textSize(20);
+  text(input.value(), 50,100);
+  
+  h1.html( input.value() );
+  
   
   
   if (drawGrid) {
