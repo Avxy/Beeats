@@ -34,6 +34,9 @@ let input;
 let h1;
 
 
+let img1;
+
+   let s = 'A health IoT platform to enable medical team to track COVID-19 patients without being in direct contact with them. This could improve safety for medical staff. Furthermore, AI techniches may be used on IoT data collected to implement models that could be used, for example, on COVID19 risk assessment and decision making in high pressure environments (reference COVID19 hospitals).';
 
 function drawHexagon(pixelPos) {
   // draws hexagon with the center pixelPos
@@ -79,15 +82,7 @@ function mouseOnScreen() {
 
 function setup() {
   
-  h1 = createElement('h1', 'Favorite Cat is...?');
-  
  
-  
-  input = createInput('A Health IoT platform to enable medical team to track COVID-19 patients without being in direct contact with them. This could improve safety for medical staff. Furthermore, AI techniches may be used on IoT data collected to implement models that could be used, for example, on COVID19 risk assessment and decision making in high pressure environments (reference COVID19 hospitals).');
-  input.size(200, 20);
- 
-  
-  
   // calculate width and height of hexagons
   hexWidth = hexRadius * 2;
   hexHeight = Math.sqrt(3)*hexRadius;
@@ -121,6 +116,20 @@ function setup() {
     let creator = (i < creatorCount) ? true : false;
     agents.push(new Agent(creator));
   }
+  
+  
+  imageMode(CENTER);
+  img1 = loadImage('https://raw.githubusercontent.com/Avxy/Beeats/gh-pages/images/beeats01.png');
+  
+  
+//  h1 = createElement('h1', 'Favorite Cat is...?');
+  
+ 
+  
+//  input = createInput('aA Health IoT platform to enable medical team to track COVID-19 patients without being in direct contact with them. This could improve safety for medical staff. Furthermore, AI techniches may be used on IoT data collected to implement models that could be used, for example, on COVID19 risk assessment and decision making in high pressure environments (reference COVID19 hospitals).');
+ // input.size(200, 20);
+  
+  
 }
 
 
@@ -128,17 +137,7 @@ function setup() {
 //======================================
 
 function draw() {
-  
-   let s = 'Hi guys. I was thinking about a health IoT platform to enable medical team to track COVID-19 patients without being in direct contact with them. This could improve safety for medical staff. Furthermore, AI techniches may be used on IoT data collected to implement models that could be used, for example, on COVID19 risk assessment and decision making in high pressure environments (reference COVID19 hospitals).';
-fill(50);
-text(s, 10, 10, 70, 80); // Text wraps within text box
-  
-  
-    textSize(20);
-  text(input.value(), 50,100);
-  
-  h1.html( input.value() );
-  
+   
   
   
   if (drawGrid) {
@@ -173,6 +172,20 @@ text(s, 10, 10, 70, 80); // Text wraps within text box
     }
   }
   update();
+  
+  
+fill(255, 255, 255, 255);
+textSize(16);
+text(s, 50, 50, width*0.8, height*0.2); // Text wraps within text box
+  
+  
+//    textSize(20);
+//  text(input.value(), 50,100);
+  
+//  h1.html( input.value() );  
+  
+  
+  
 }
 
 
@@ -215,12 +228,17 @@ class Agent {
   draw() {
     noStroke();
     if (this.creator) {
-      fill(255, 30);
+      fill(233, 144, 55);
     } else {
-      fill(255, 0, 100, 40);
+      fill(233, 144, 55, 34);
     }
     // grab pixel position from corresponding hexagon
     drawHexagon(hexagons[this.x][this.y].pixelPos);
+    
+    
+    
+    image(img1, windowWidth/2, windowHeight/2, 377, 144);
+    
   }
   
   update() {
@@ -400,15 +418,15 @@ class Hex {
   
   drawHex() {
     // called in global draw
+    //color////////////////////
     noStroke();
     // even if drawHex is inactive we need to draw them blank
     // if drawGrid is active
-    fill(0);
+    fill(34);
     let brightness = this.zenosNeighbours;
+    
     if (drawHex && this.active) {
-      fill(5*brightness,
-           6*Math.pow(brightness, 1.6),
-           16*brightness);
+fill(3*Math.pow(brightness,1.6),2*brightness, 1*brightness);
     }
     drawHexagon(this.pixelPos);
   }
@@ -420,7 +438,7 @@ class Hex {
     if (this.active) { // truthy
       let activeNeighboursCount = this.countActiveNeighbours();
       let activeNeighbours = this.getActiveNeighbours();
-      stroke(255);
+      stroke(89,55,34);
       strokeWeight(hexLineWeight);
       noFill();
       
@@ -701,7 +719,7 @@ class Hex {
 //======================================
 
 function drawMouseHexagon() {
-  fill(255, 50);
+  fill(233, 144, 55);
   if (mouseTargetHex && mouseOnScreen()) {
     drawHexagon(mouseTargetHex.pixelPos);
   }
